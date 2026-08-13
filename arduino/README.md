@@ -76,9 +76,9 @@ https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32
 4. Click **OK**.
 5. Click the **Boards Manager** icon on the left sidebar (or press `Ctrl + Shift + B`), search for **`esp32`**, and click **Install**.
 
-########################
+
 # Running Arduino IDE with Alias
-#########################
+
 
 ### **1. Set Up the Bash Alias**
 
