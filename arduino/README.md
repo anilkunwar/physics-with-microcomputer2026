@@ -1,30 +1,43 @@
 # How to Download and Install Arduino IDE 2
+### **Step-by-Step: Upgrading to Arduino IDE 2.x on Ubuntu**
 
-The reason you cannot find the **"Additional Boards Manager URLs"** field in your Preferences window is because you are currently running an **outdated version of Arduino IDE** (likely version 1.0.x installed from the standard Ubuntu package repository).
-
-You can confirm this by looking at your Preferences menu: options like *“Update sketch files to new extension on save (.pde -> .ino)”* only existed in the legacy 1.0.x versions before the **Boards Manager** feature was introduced in modern releases. The ESP32-S3 cannot be programmed on this version.
+Since AppImages run as self-contained executables without modifying system libraries, installing the modern IDE is quick and won't conflict with older packages.
 
 ---
 
-### 🚀 **Solution: Install Arduino IDE 2.x**
+### **Step 1: Install Required Dependencies**
 
-To program your ESP32-S3, you'll need to upgrade to a modern version of the IDE:
+Modern AppImages in Ubuntu require `libfuse2` to run. Open your Ubuntu Terminal (`Ctrl + Alt + T`) and run:
 
-#### **Step 1: Download the Modern IDE**
+```bash
+sudo apt update && sudo apt install libfuse2 -y
 
-1. Open your browser and go to the official website: [arduino.cc/en/software](https://www.arduino.cc/en/software).
-2. Under **Arduino IDE 2.x**, download the **Linux AppImage** (64-bit) file.
+```
 
-#### **Step 2: Make it Executable and Run**
+*(If you are on Ubuntu 24.04 or newer, run `sudo apt install libfuse2t64 -y` instead.)*
 
-1. Open your **Terminal** and navigate to your `Downloads` folder:
+---
+
+### **Step 2: Download the New IDE**
+
+1. Open your browser and go to the official website: **[arduino.cc/en/software](https://www.arduino.cc/en/software)**.
+2. Under **Arduino IDE 2.x**, click on **Linux AppImage 64 bits (x86-64)**.
+3. Save the `.AppImage` file to your **Downloads** folder.
+
+---
+
+### **Step 3: Make it Executable & Launch**
+
+#### **Method A: Via Terminal (Fastest)**
+
+1. Move into your `Downloads` directory:
 ```bash
 cd ~/Downloads
 
 ```
 
 
-2. Grant execution permissions to the downloaded file:
+2. Grant execution permissions:
 ```bash
 chmod +x arduino-ide_*_Linux_64bit.AppImage
 
@@ -39,19 +52,27 @@ chmod +x arduino-ide_*_Linux_64bit.AppImage
 
 
 
+#### **Method B: Via Graphical Interface (GUI)**
+
+1. Open your **Files** manager and open the **Downloads** folder.
+2. Right-click the `arduino-ide_...AppImage` file and choose **Properties**.
+3. Go to the **Permissions** tab and check the box that says **"Allow executing file as program"**.
+4. Close the window, then **double-click** the AppImage file to run it.
+
 ---
 
-### **Step 3: Add ESP32 Support in Arduino IDE 2.x**
+### **Step 4: Add ESP32 Support in Arduino IDE 2.x**
 
-Once the new version opens:
+Now that you have the updated IDE running:
 
-1. Press `Ctrl + ,` (or go to **File > Preferences**).
-2. You will now see the **"Additional Boards Manager URLs"** field near the bottom.
-3. Paste the URL:
+1. Press **`Ctrl + ,`** (or go to **File > Preferences**).
+2. Look near the bottom for **"Additional Boards Manager URLs"**.
+3. Paste the official Espressif board package link:
 ```text
 https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
 
 ```
 
 
-4. Click **OK**, then open **Boards Manager** (`Ctrl + Shift + B`), search for **esp32**, and click **Install**.
+4. Click **OK**.
+5. Click the **Boards Manager** icon on the left sidebar (or press `Ctrl + Shift + B`), search for **`esp32`**, and click **Install**.
