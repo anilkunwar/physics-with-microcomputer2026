@@ -1,4 +1,4 @@
-# How to Download and Install Arduino IDE 2
+# How to Download and Install Arduino IDE 2 (Along with Addition of ESP32 Support)
 ### **Step-by-Step: Upgrading to Arduino IDE 2.x on Ubuntu**
 
 Since AppImages run as self-contained executables without modifying system libraries, installing the modern IDE is quick and won't conflict with older packages.
@@ -49,7 +49,6 @@ chmod +x arduino-ide_*_Linux_64bit.AppImage
 ./arduino-ide_*_Linux_64bit.AppImage
 
 ```
-
 
 
 #### **Method B: Via Graphical Interface (GUI)**
