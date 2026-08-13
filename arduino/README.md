@@ -1,4 +1,4 @@
-How to Download and Install Arduino IDE 2
+# How to Download and Install Arduino IDE 2
 
 The reason you cannot find the **"Additional Boards Manager URLs"** field in your Preferences window is because you are currently running an **outdated version of Arduino IDE** (likely version 1.0.x installed from the standard Ubuntu package repository).
 
