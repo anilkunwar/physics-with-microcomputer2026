@@ -108,3 +108,59 @@ arduino
 ```
 
 *(The `&` keeps the IDE running in the background so your terminal prompt stays free!)*
+
+
+# Connecting ESP32 to WiFi
+
+That default template is generated every time you open a new sketch in Arduino.
+
+To replace `sketch_aug14a.ino` with the Wi-Fi connection code, simply **copy the code below**, select everything inside your Arduino IDE editor window (`Ctrl + A`), and paste it in (`Ctrl + V`):
+
+```cpp
+#include <WiFi.h>
+
+// Replace with your 2.4 GHz Wi-Fi credentials
+const char* ssid     = "YOUR_WIFI_SSID";
+const char* password = "YOUR_WIFI_PASSWORD";
+
+void setup() {
+  // Start serial communication at 115200 baud
+  Serial.begin(115200);
+  delay(1000); 
+
+  Serial.println("\n--- ESP32-S3 Wi-Fi Setup ---");
+  
+  // Set ESP32 to Station (client) mode
+  WiFi.mode(WIFI_STA);
+  WiFi.disconnect();
+  delay(100);
+
+  Serial.print("Connecting to: ");
+  Serial.println(ssid);
+
+  WiFi.begin(ssid, password);
+
+  // Print dots while waiting to connect
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println("\nWiFi connected successfully!");
+  Serial.print("IP address assigned: ");
+  Serial.println(WiFi.localIP());
+}
+
+void loop() {
+  // Main code runs repeatedly after setup completes
+}
+
+```
+
+---
+
+### **Next Steps to Test It:**
+
+1. Update `"YOUR_WIFI_SSID"` and `"YOUR_WIFI_PASSWORD"` with your actual Wi-Fi details.
+2. Click the **Upload Arrow (`->`)** at the top-left of the IDE.
+3. Once finished, click the **Serial Monitor** icon (top-right corner, looks like a magnifying glass) and make sure the baud rate dropdown at the bottom right of the monitor tab is set to **`115200 baud`**.
