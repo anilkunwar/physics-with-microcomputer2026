@@ -75,3 +75,36 @@ https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32
 
 4. Click **OK**.
 5. Click the **Boards Manager** icon on the left sidebar (or press `Ctrl + Shift + B`), search for **`esp32`**, and click **Install**.
+
+########################
+# Running Arduino IDE with Alias
+#########################
+
+### **1. Set Up the Bash Alias**
+
+Run this command in your terminal to create the `arduino` shortcut pointing directly to your exact folder location:
+
+```bash
+echo "alias arduino='~/workstation/softwares/arduino/arduino-ide_2.3.10_Linux_64bit.AppImage &'" >> ~/.bashrc
+
+```
+
+Then, reload your configuration:
+
+```bash
+source ~/.bashrc
+
+```
+
+---
+
+### **2. Launch Arduino IDE**
+
+Now you can open the IDE from any directory in your terminal by typing:
+
+```bash
+arduino
+
+```
+
+*(The `&` keeps the IDE running in the background so your terminal prompt stays free!)*
