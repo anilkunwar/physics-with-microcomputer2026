@@ -114,7 +114,7 @@ arduino
 
 That default template is generated every time you open a new sketch in Arduino.
 
-To replace `sketch_aug14a.ino` with the Wi-Fi connection code, simply **copy the code below**, select everything inside your Arduino IDE editor window (`Ctrl + A`), and paste it in (`Ctrl + V`):
+To replace `sketch_monthDDa.ino` with the Wi-Fi connection code, simply **copy the code below**, select everything inside your Arduino IDE editor window (`Ctrl + A`), and paste it in (`Ctrl + V`):
 
 ```cpp
 #include <WiFi.h>
