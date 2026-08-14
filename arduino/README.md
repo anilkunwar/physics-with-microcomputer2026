@@ -110,6 +110,19 @@ arduino
 *(The `&` keeps the IDE running in the background so your terminal prompt stays free!)*
 
 
+Prerequisites & N16R8 Settings
+Before uploading code, ensure these board parameters are configured in Tools:
+
+Board: ESP32S3 Dev Module (already selected in your top bar)
+
+Port: Select your device path (e.g., /dev/ttyACM0 or /dev/ttyUSB0)
+
+Flash Size: 16MB (128Mb)
+
+PSRAM: OPI PSRAM
+
+USB CDC On Boot: Enabled
+
 # Connecting ESP32 to WiFi
 
 That default template is generated every time you open a new sketch in Arduino.
