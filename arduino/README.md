@@ -177,3 +177,59 @@ void loop() {
 1. Update `"YOUR_WIFI_SSID"` and `"YOUR_WIFI_PASSWORD"` with your actual Wi-Fi details.
 2. Click the **Upload Arrow (`->`)** at the top-left of the IDE.
 3. Once finished, click the **Serial Monitor** icon (top-right corner, looks like a magnifying glass) and make sure the baud rate dropdown at the bottom right of the monitor tab is set to **`115200 baud`**.
+
+Here is a breakdown of the main troubleshooting steps encountered and resolved during your setup:
+
+
+
+# **Troubleshooting Guide: ESP32-S3 Arduino Setup**
+
+---
+
+### **1. Resolving Missing Port Error (`no such file or directory`)**
+
+* **Issue:** The Serial Monitor fails to connect to `/dev/ttyACM0` or the port is missing from the menu.
+* **Solutions:**
+* **Check Cable:** Ensure the USB-C cable is a **data transfer cable**, not a charge-only cable.
+* **Verify Port Path:** Run `ls /dev/ttyACM* /dev/ttyUSB*` in the Ubuntu terminal to identify the active device path.
+* **Fix Permissions:** If access is denied, grant serial port permissions by running `sudo usermod -a -G dialout $USER` and restarting.
+
+
+
+---
+
+### **2. Fixing Invalid Head of Packet / Serial Noise (`exit status 2`)**
+
+* **Issue:** `esptool` fails to upload, showing: `Failed to connect to ESP32-S3: Invalid head of packet (0x1B): Possible serial noise or corruption.`
+* **Solution (Bootloader Sequence):**
+1. Press and **HOLD** the `BOOT` (or `IO0`) button on the ESP32-S3.
+2. Press and release the `RST` (or `RESET`/`EN`) button once.
+3. Release the `BOOT` button.
+4. Click **Upload** in the Arduino IDE while the board is in this silent bootloader mode.
+
+
+
+---
+
+### **3. Correcting Serial Monitor Output (Garbled Text or Blank Screen)**
+
+* **Issue 1 (Garbled / Weird Characters):** Serial monitor outputs random symbols or logging garbage.
+* **Solution:** Change the baud rate dropdown in the bottom-right of the Serial Monitor tab from `9600 baud` to **`115200 baud`** to match `Serial.begin(115200)`.
+
+
+* **Issue 2 (Blank Screen After Upload):** The output panel is empty because the `setup()` function finished executing before the monitor reconnected.
+* **Solution:** Press the physical **`RST` (Reset)** button on the ESP32-S3 board once after flashing to rerun `setup()`.
+* **Pro-Tip Code Addition:** Add `while (!Serial) delay(10);` after `Serial.begin(115200);` so the board automatically waits for the Serial Monitor to connect before running.
+
+
+
+---
+
+### **4. Network Connection Issues**
+
+* **Issue:** Board loops endlessly printing dots (`.......`) without connecting to Wi-Fi.
+* **Solutions:**
+* **Verify Band:** Ensure you are connecting to a **2.4 GHz network** (ESP32-S3 does not support 5 GHz Wi-Fi).
+* **Check Credentials:** Double-check exact spelling and case for `ssid` and `password` variables in the sketch.
+
+* 
